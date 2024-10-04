@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Bootstrap Express App</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/custom.css"> <!-- Custom styles -->
+</head>
+<body>
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-lg" style="width: 30rem;">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">Welcome to the App</h2>
+
+            <% if (session.username) { %>
+                <p class="text-center">Hello, <strong><%= session.username %></strong>!</p>
+                <form action="/submit" method="POST" class="text-center">
+                    <button class="btn btn-danger w-100" name="username" value="">Logout</button>
+                </form>
+            <% } else { %>
+                <form action="/submit" method="POST">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Enter your name:</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Your name" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                </form>
+            <% } %>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
