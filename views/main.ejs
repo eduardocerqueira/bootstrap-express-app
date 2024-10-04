@@ -9,18 +9,89 @@
 </head>
 <body>
 
-<div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="card shadow-lg" style="width: 30rem;">
-        <div class="card-body text-center">
-            <h2 class="card-title mb-4">Welcome, <%= username %>!</h2>
-            <p>You have successfully logged in.</p>
-            <form action="/logout" method="POST">
-                <button type="submit" class="btn btn-danger w-100">Logout</button>
-            </form>
+<!-- Top Header -->
+<header class="bg-primary text-white d-flex justify-content-between align-items-center py-3 px-4">
+    <div class="mx-auto text-center">
+        <h1 class="mb-0">Welcome to the Dashboard</h1>
+    </div>
+    <form action="/logout" method="POST" class="mb-0">
+        <button type="submit" class="btn btn-danger">Logout</button>
+    </form>
+</header>
+
+<!-- Main Layout using Bootstrap Grid -->
+<div class="container-fluid mt-4">
+    <div class="row">
+        <!-- Left Container (15% width) -->
+        <div class="col-md-2" id="left-container" style="width: 15%;">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Logged-in Users</h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersList">
+                            <% for (const user in users) { %>
+                                <tr>
+                                    <td><%= users[user].username %></td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Container (60% width) -->
+        <div class="col-md-8 mt-0" id="center-container" style="width: 60%;">
+            <div class="card shadow-lg w-100">
+                <div class="card-body text-center">
+                    <h2 class="card-title mb-4">Welcome, <%= username %>!</h2>
+                    <p>You have successfully logged in.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Container (25% width) -->
+        <div class="col-md-3" id="right-container" style="width: 25%;">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Right Sidebar</h5>
+                    <p class="card-text">This can contain additional information or ads.</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <script src="/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Function to fetch the list of users from the server and update the table
+    function fetchUsers() {
+        fetch('/api/users')
+            .then(response => response.json())
+            .then(users => {
+                const usersList = document.getElementById('usersList');
+                usersList.innerHTML = ''; // Clear current list
+                users.forEach(user => {
+                    const row = document.createElement('tr');
+                    const cell = document.createElement('td');
+                    cell.textContent = user.username;
+                    row.appendChild(cell);
+                    usersList.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error fetching users:', error));
+    }
+
+    // Refresh the user list every 5 seconds
+    setInterval(fetchUsers, 5000);
+
+    // Fetch users immediately when the page loads
+    fetchUsers();
+</script>
 </body>
 </html>
