@@ -3,7 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "NODE_ENV=test jest --collectCoverage --forceExit"
+  },
+  "scriptsComments": {
+    "start": "npm run start - run application on production mode",
+    "dev": "npm run dev - run application on development mode with auto-restart",
+    "test": "npm test - run automated tests"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +23,10 @@
     "express": "^4.21.0",
     "express-session": "^1.18.0",
     "request-ip": "^3.3.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.7",
+    "supertest": "^7.0.0"
   }
 }
