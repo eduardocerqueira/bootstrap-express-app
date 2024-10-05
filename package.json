@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "NODE_ENV=test jest --collectCoverage --detectOpenHandles"
+    "test": "NODE_ENV=test jest --collectCoverage --forceExit"
   },
   "scriptsComments": {
     "start": "npm run start - run application on production mode",
