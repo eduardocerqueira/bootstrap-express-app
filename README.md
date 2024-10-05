@@ -52,7 +52,6 @@ Ensure you have the following installed on your local machine:
 
 2. Open your browser and go to `http://localhost:3000` to access the application.
 
-
 ## Running the application in container
 
 Build container image and run the application:
@@ -66,6 +65,29 @@ docker run -p 3000:3000 -d node-login-app
 -d runs the container in detached mode (in the background).
 
 Open a browser and navigate to http://localhost:3000 to see your Node.js app running in the container.
+
+## Development Mode
+If you want to run the application in development mode (with automatic server restarts when files change), use:
+
+```
+npm run dev
+```
+
+This requires nodemon, which will automatically restart the server on code changes.
+
+## Running Tests
+This application uses Jest and Supertest for testing.
+
+To run the tests, use the following command:
+
+```
+npm test
+```
+This will execute all tests located in the tests/ folder.
+
+## Test Coverage
+* Tests are written to verify login functionality.
+* Tests include scenarios for successful login, and failure when a username is not provided.
 
 ## Application Structure
 
@@ -123,6 +145,10 @@ You can add more pages by creating new EJS templates in the `views` directory an
 ## Custom Styling
 
 You can modify the layout and styles by editing the `custom.css` file located in `public/css/`.
+
+## CI/CD with GitHub Actions
+This repository is set up to build the Docker image automatically using GitHub Actions.
+On every push to the main branch or on pull requests, Docker image will be built after the automated tests pass :)
 
 ## Known Issues
 
