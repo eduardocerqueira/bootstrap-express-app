@@ -19,10 +19,13 @@
   "dependencies": {
     "body-parser": "^1.20.3",
     "bootstrap": "^5.3.3",
+    "buffer-crc32": "^1.0.0",
     "ejs": "^3.1.10",
     "express": "^4.21.0",
     "express-session": "^1.18.0",
-    "request-ip": "^3.3.0"
+    "npm-audit-html": "^1.5.0",
+    "request-ip": "^3.3.0",
+    "uid2": "^1.0.0"
   },
   "devDependencies": {
     "jest": "^29.7.0",

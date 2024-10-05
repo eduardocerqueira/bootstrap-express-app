@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1728106324568" clover="3.2.0">
-  <project timestamp="1728106324568" name="All files">
+<coverage generated="1728108710895" clover="3.2.0">
+  <project timestamp="1728108710895" name="All files">
     <metrics statements="46" coveredstatements="26" conditionals="12" coveredconditionals="3" methods="8" coveredmethods="2" elements="66" coveredelements="31" complexity="0" loc="46" ncloc="46" packages="1" files="1" classes="1"/>
     <file name="app.js" path="/Users/ecerquei/git/bootstrap-express-app/app.js">
       <metrics statements="46" coveredstatements="26" conditionals="12" coveredconditionals="3" methods="8" coveredmethods="2"/>
