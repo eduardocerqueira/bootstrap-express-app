@@ -5,9 +5,8 @@ const path = require('path');
 const requestIp = require('request-ip'); // Middleware for getting IP addresses
 
 const app = express();
-
-  // Export app for testing
-  module.exports = app;
+// Export app for testing
+module.exports = app;
 
 // Store logged-in users with their username and IP address
 const loggedInUsers = {};
