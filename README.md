@@ -1,5 +1,7 @@
 # Node.js Login Application
 
+![CI](https://github.com/eduardocerqueira/bootstrap-express-app/actions/workflows/ci.yml/badge.svg) [![npm version](https://badge.fury.io/js/express.svg)](https://badge.fury.io/js/express)
+
 This is a basic login application built using **Node.js** with **Express**, **Express-session**, **Body-parser**, and **Bootstrap 5.3.3**. It allows users to log in with a username and displays all currently logged-in users along with their local times. The application features two main pages: a login page and a main dashboard page.
 
 ## Features
