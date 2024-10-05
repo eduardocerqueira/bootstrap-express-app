@@ -31,13 +31,14 @@
                         <thead>
                             <tr>
                                 <th>Username</th>
+                                <th>Local Time</th>
                             </tr>
                         </thead>
-                        <tbody id="usersList">
+                        <tbody id="usersList" class="fs-6">
                             <% for (const user in users) { %>
                                 <tr>
                                     <td><%= users[user].username %></td>
-                                </tr>
+                                </tr>                            
                             <% } %>
                         </tbody>
                     </table>
@@ -69,18 +70,40 @@
 
 <script src="/js/bootstrap.bundle.min.js"></script>
 <script>
+
+    // Function to format the date to mm/dd HH
+    function formatLocalTime(date) {
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+
+        let hours = date.getHours();
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const period = hours >= 12 ? 'PM' : 'AM';
+
+        hours = hours % 12 || 12; // Convert 0 to 12 for midnight
+        return `${month}/${day} ${hours}:${minutes} ${period}`;
+    }
+
     // Function to fetch the list of users from the server and update the table
     function fetchUsers() {
         fetch('/api/users')
             .then(response => response.json())
             .then(users => {
                 const usersList = document.getElementById('usersList');
-                usersList.innerHTML = ''; // Clear current list
+                usersList.innerHTML = '';
                 users.forEach(user => {
                     const row = document.createElement('tr');
-                    const cell = document.createElement('td');
-                    cell.textContent = user.username;
-                    row.appendChild(cell);
+                    const cellUsername = document.createElement('td');
+                    const cellLocalTime = document.createElement('td');
+
+                    cellUsername.textContent = user.username;
+                    const localTime = new Date(user.localTime);
+                    console.log(localTime);
+                    cellLocalTime.textContent = formatLocalTime(localTime);
+
+                    
+                    row.appendChild(cellUsername);
+                    row.appendChild(cellLocalTime);
                     usersList.appendChild(row);
                 });
             })

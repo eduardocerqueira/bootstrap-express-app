@@ -40,12 +40,13 @@ app.get('/', (req, res) => {
 // Handle login form submission
 app.post('/login', (req, res) => {
     const { username } = req.body;
+    const localTime = new Date().toLocaleString();
 
     if (username) {
         req.session.username = username;
 
         // Add the user to the list of logged-in users
-        loggedInUsers[username] = { username};
+        loggedInUsers[username] = { username, localTime };
         return res.redirect('/main');
     }
 
@@ -55,6 +56,7 @@ app.post('/login', (req, res) => {
 // API to get the list of logged-in users
 app.get('/api/users', (req, res) => {
     res.json(Object.values(loggedInUsers)); // Return the users as an array of objects
+    console.log(loggedInUsers)
 });
 
 // Main page route (requires login)
