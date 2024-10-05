@@ -1,0 +1,41 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    # Step 3: Log in to Docker Hub (Optional)
+    # Uncomment this section if you're pushing the image to Docker Hub. 
+    # Replace DOCKER_USERNAME and DOCKER_PASSWORD with your Docker credentials as GitHub secrets.
+    # - name: Log in to Docker Hub
+    #   uses: docker/login-action@v3
+    #   with:
+    #     username: ${{ secrets.DOCKER_USERNAME }}
+    #     password: ${{ secrets.DOCKER_PASSWORD }}
+
+    # Step 4: Build the Docker image
+    - name: Build Docker image
+      run: |
+        docker build -t node-login-app .
+
+    # Step 5: (Optional) Push the Docker image to Docker Hub
+    # Uncomment if you want to push the image to Docker Hub
+    # - name: Push Docker image to Docker Hub
+    #   run: |
+    #     docker tag node-login-app:latest your-docker-username/node-login-app:latest
+    #     docker push your-docker-username/node-login-app:latest
